@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+package com.tech.blog.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,20 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.tech.blog.entities.User;
-import com.tech.blog.dao.UserDao;
-import com.tech.blog.helper.ConnectionProvider;
-import java.sql.*;
-import javax.servlet.annotation.MultipartConfig;
-
-
 /**
  *
  * @author Arpit Chauhan
  */
-
-@MultipartConfig
-public class RegisterServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,33 +34,10 @@ public class RegisterServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RegisterServlet</title>");            
+            out.println("<title>Servlet LoginServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-           // out.println("<h1>Servlet RegisterServlet at " + request.getContextPath() + "</h1>");
-            
-            String check=request.getParameter("check");
-            out.println(check);
-            
-            if(check == null){
-                out.println("Box not checked");
-            }else{
-                String name=request.getParameter("user_name");
-                String email=request.getParameter("user_email");
-                String password=request.getParameter("user_password");
-                String gender=request.getParameter("gender");
-                String about=request.getParameter("about");
-                
-                User user=new User(name,email,password,gender,about);
-                
-                UserDao dao=new UserDao(ConnectionProvider.getConnection());
-                if(dao.saveUser(user)){
-                    out.println("done");
-                }else{
-                    out.println("error");
-                }
-            }
-            
+            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

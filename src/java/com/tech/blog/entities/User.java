@@ -90,11 +90,11 @@ public class User {
         this.about=about;
     }
     
-    public Timestamp setdatetime(){
+    public Timestamp getdatetime(){
         return datetime;
     }
     
-    public void setemail(Timestamp datetime){
+    public void setdatetime(Timestamp datetime){
         this.datetime=datetime;
     }
     

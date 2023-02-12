@@ -44,4 +44,40 @@ public class UserDao {
         return f;
     }
     
+    // get user by usermail and password
+    
+    public User getUserByEmailAndPassword(String email,String password){
+        
+        User user=null;
+        
+        try{
+            
+            String query="select * from user where email=? and password=? ";
+            PreparedStatement pstmt=con.prepareStatement(query);
+            pstmt.setString(1, email);
+            pstmt.setString(2,password);
+            
+            ResultSet set=pstmt.executeQuery();
+            
+            if(set.next()){
+                user=new User();
+                String name=set.getString("user_name");
+                
+                user.setname(name);
+                
+                user.setId(set.getInt("id"));
+                user.setemail(set.getString("email"));
+                user.setpassword(set.getString("password"));
+                user.setgender(set.getString("gender"));
+                user.setabout(set.getString("about"));
+                user.setdatetime(set.getTimestamp("rdate"));
+                           
+                
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return user;
+    }
 }
